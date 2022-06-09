@@ -1,0 +1,13 @@
+.main {
+    height: 30em;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+@media screen and (max-width: 1000px){
+    .main{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+}

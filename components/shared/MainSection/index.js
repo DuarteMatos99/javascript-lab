@@ -1,6 +1,11 @@
 const titleTab = document.title;
 const sectionTitle = titleTab == "Javascript Lab" ? "Sections" : titleTab;
 
+const cssLink = document.createElement("link");
+cssLink.setAttribute("rel", "stylesheet");
+cssLink.setAttribute("type", "text/css");
+cssLink.setAttribute("href", "/components/shared/MainSection/styles.css");
+
 class MainSection extends HTMLElement {
     constructor() {
         super();
@@ -14,3 +19,5 @@ class MainSection extends HTMLElement {
 }
 
 customElements.define("main-section", MainSection);
+
+document.getElementsByTagName("head")[0].appendChild(cssLink);

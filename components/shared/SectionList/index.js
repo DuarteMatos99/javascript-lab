@@ -4,10 +4,10 @@ import { algorithms } from "../../../data/algorithms/index.js";
 const URL = document.URL;
 const URL_PAGE = URL.split("/")[3];
 
-const fileref = document.createElement("link");
-fileref.setAttribute("rel", "stylesheet");
-fileref.setAttribute("type", "text/css");
-fileref.setAttribute("href", "/components/shared/SectionList/section-list.css");
+const cssLink = document.createElement("link");
+cssLink.setAttribute("rel", "stylesheet");
+cssLink.setAttribute("type", "text/css");
+cssLink.setAttribute("href", "/components/shared/SectionList/styles.css");
 
 let code_section = true;
 let li_items = [];
@@ -44,4 +44,4 @@ ul_items += "</ul>";
 
 document.getElementsByClassName("section-list")[0].innerHTML = ul_items;
 
-document.getElementsByTagName("head")[0].appendChild(fileref);
+document.getElementsByTagName("head")[0].appendChild(cssLink);
