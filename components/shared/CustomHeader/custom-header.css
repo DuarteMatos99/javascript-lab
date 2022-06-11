@@ -1,0 +1,20 @@
+.header {
+    height: 15em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-title {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background-color: #3BACB6;
+    padding: 15px;
+}
+
+.flask {
+    width: 35px;
+    height: 35px;
+    transform: rotate(17deg);
+}

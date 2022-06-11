@@ -29,7 +29,7 @@ let ul_items = '<ul class="section-items">';
 li_items.forEach((item) =>
     code_section
         ? (ul_items += `
-            <div class="section-item"><li>${item.name}</li>
+            <div class="section-item"><h3>${item.name}</h3>
                 <div class="section-description">${item.description}</div>
                 <a class="show-code" href="#">Show Code</a>
                 <pre class="section-code">
