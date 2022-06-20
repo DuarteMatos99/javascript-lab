@@ -82,4 +82,53 @@ export const algorithms = [
             "\n" +
             "updateInventory(curInv, newInv);\n",
     },
+    {
+        name: "Pairwise",
+        description: `<p>Given an array arr, find element pairs whose sum equal the second argument arg and return the sum of their indices.</p>
+            <p>You may use multiple pairs that have the same numeric elements but different indices. Each pair should use the lowest possible available indices. Once an element has been used it cannot be reused to pair with another element. For instance, pairwise([1, 1, 2], 3) creates a pair [2, 1] using the 1 at index 0 rather than the 1 at index 1, because 0+2 < 1+2.</p>
+            <p>For example pairwise([7, 9, 11, 13, 15], 20) returns 6. The pairs that sum to 20 are [7, 13] and [9, 11]. We can then write out the array with their indices and values.</p>`,
+        code:
+            "\nconst pairwise = (arr, arg) => {\n" +
+            "    const all_items = arr.slice();\n" +
+            "    const sum_key = arg;\n" +
+            "    const indexes_used = [];\n" +
+            "    let indexes_sum = 0;\n" +
+            "\n" +
+            "    for (\n" +
+            "        let first_pair_index = 0;\n" +
+            "        first_pair_index < all_items.length;\n" +
+            "        first_pair_index++\n" +
+            "    ) {\n" +
+            "        const first_pair = all_items[first_pair_index];\n" +
+            "\n" +
+            "        for (\n" +
+            "            let second_pair_index = 0;\n" +
+            "            second_pair_index < all_items.length;\n" +
+            "            second_pair_index++\n" +
+            "        ) {\n" +
+            "            const first_pair_index_used =\n" +
+            "                indexes_used.includes(first_pair_index);\n" +
+            "            const second_pair_index_used =\n" +
+            "                indexes_used.includes(second_pair_index);\n" +
+            "\n" +
+            "            if (\n" +
+            "                first_pair_index != second_pair_index &&\n" +
+            "                !first_pair_index_used &&\n" +
+            "                !second_pair_index_used\n" +
+            "            ) {\n" +
+            "                const second_pair = all_items[second_pair_index];\n" +
+            "                const sum_pairs = first_pair + second_pair;\n" +
+            "\n" +
+            "                if (sum_pairs == sum_key) {\n" +
+            "                    indexes_used.push(first_pair_index, second_pair_index);\n" +
+            "                    indexes_sum += first_pair_index + second_pair_index;\n" +
+            "                }\n" +
+            "            }\n" +
+            "        }\n" +
+            "    }\n" +
+            "    return indexes_sum;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(pairwise([1, 4, 2, 3, 0, 5], 7)); // 11\n",
+    },
 ];

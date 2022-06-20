@@ -1,4 +1,4 @@
-import { courses } from "../../../data/courses/index.js";
+import { courses } from "../../../data/sections/index.js";
 import { algorithms } from "../../../data/algorithms/index.js";
 
 const URL = document.URL;

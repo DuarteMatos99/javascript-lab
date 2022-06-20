@@ -72,3 +72,47 @@ var newInv = [
 ];
 
 updateInventory(curInv, newInv); */
+
+/* // Pairwise
+const pairwise = (arr, arg) => {
+    const all_items = arr.slice();
+    const sum_key = arg;
+    const indexes_used = [];
+    let indexes_sum = 0;
+
+    for (
+        let first_pair_index = 0;
+        first_pair_index < all_items.length;
+        first_pair_index++
+    ) {
+        const first_pair = all_items[first_pair_index];
+
+        for (
+            let second_pair_index = 0;
+            second_pair_index < all_items.length;
+            second_pair_index++
+        ) {
+            const first_pair_index_used =
+                indexes_used.includes(first_pair_index);
+            const second_pair_index_used =
+                indexes_used.includes(second_pair_index);
+
+            if (
+                first_pair_index != second_pair_index &&
+                !first_pair_index_used &&
+                !second_pair_index_used
+            ) {
+                const second_pair = all_items[second_pair_index];
+                const sum_pairs = first_pair + second_pair;
+
+                if (sum_pairs == sum_key) {
+                    indexes_used.push(first_pair_index, second_pair_index);
+                    indexes_sum += first_pair_index + second_pair_index;
+                }
+            }
+        }
+    }
+    return indexes_sum;
+};
+
+console.log(pairwise([1, 4, 2, 3, 0, 5], 7)); // 11 */
