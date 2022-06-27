@@ -1,5 +1,6 @@
 import { courses } from "../../../data/sections/index.js";
 import { algorithms } from "../../../data/algorithms/index.js";
+import { scripting_algorithms } from "../../../data/scripting-algorithms/index.js";
 
 const URL = document.URL;
 const URL_PAGE = URL.split("/")[4];
@@ -19,6 +20,9 @@ switch (URL_PAGE) {
         break;
     case "algorithms":
         li_items = algorithms;
+        break;
+    case "scripting-algorithms":
+        li_items = scripting_algorithms;
         break;
     default:
         console.log("URL not found");
