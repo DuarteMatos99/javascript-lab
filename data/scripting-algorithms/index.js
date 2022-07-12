@@ -251,4 +251,243 @@ export const scripting_algorithms = [
             "\n" +
             "console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4])); // [1, 2, 3, 5, 4]\n",
     },
+    {
+        name: "Convert HTML Entities",
+        description: `<p>Convert the characters '&', '<', '>', " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.</p>`,
+        code:
+            "\nconst convertHTML = (str) => {\n" +
+            "    const html_entities = {\n" +
+            '        "&": "&amp;",\n' +
+            '        "<": "&lt;",\n' +
+            '        ">": "&gt;",\n' +
+            '        "\'": "&apos;",\n' +
+            '        \'"\': "&quot;",\n' +
+            "    };\n" +
+            '    const str_splited = str.slice().split("");\n' +
+            "    const entities = str_splited.map((item, index) => {\n" +
+            "        const char = html_entities[item];\n" +
+            "        if (char != undefined) return char;\n" +
+            "        return item;\n" +
+            "    });\n" +
+            "\n" +
+            '    const final_str = entities.join("");\n' +
+            "    return final_str;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(convertHTML('Stuff in \"quotation marks\"')); // Stuff in &quot;quotation marks&quot;",
+    },
+    {
+        name: "Sum All Odd Fibonacci Numbers",
+        description: `<p>Given a positive integer 'num', return the sum of all odd Fibonacci numbers that are less than or equal to 'num'.</p>
+        <p>The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.</p>
+        <p>For example, 'sumFibs(10)' should return '10' because all odd Fibonacci numbers less than or equal to '10' are 1, 1, 3, and 5.</p>`,
+        code:
+            "\nconst sumFibs = (num) => {\n" +
+            "    let current = 1;\n" +
+            "    let next = 0;\n" +
+            "    let previous = 0;\n" +
+            "    let sum_odd = 0;\n" +
+            "\n" +
+            "    while (sum_odd < num) {\n" +
+            "        previous = current;\n" +
+            "        current = next;\n" +
+            "        next = previous + current;\n" +
+            "\n" +
+            "        if (current > num) return sum_odd;\n" +
+            "        if (current % 2 == 1) sum_odd += current;\n" +
+            "    }\n" +
+            "\n" +
+            "    return sum_odd;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(sumFibs(1000)); // 1785\n",
+    },
+    {
+        name: "Sum All Primes",
+        description: `<p>A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. For example, 2 is a prime number because it is only divisible by 1 and 2. In contrast, 4 is not prime since it is divisible by 1, 2 and 4.</p>
+        <p>Rewrite 'sumPrimes' so it returns the sum of all prime numbers that are less than or equal to num.</p>`,
+        code:
+            "\nconst sumPrimes = (num) => {\n" +
+            "    let sum_primes = 0;\n" +
+            "    for (let i = 1; i <= num; i++) {\n" +
+            "        let counter = 0;\n" +
+            "        for (let j = 1; j <= i; j++) {\n" +
+            "            if (i % j == 0) counter += 1;\n" +
+            "            if (counter == 3) break;\n" +
+            "        }\n" +
+            "        if (counter == 2) sum_primes += i;\n" +
+            "    }\n" +
+            "    return sum_primes;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(sumPrimes(10)); // 17\n",
+    },
+    {
+        name: "Smallest Common Multiple",
+        description: `<p>Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.</p>
+        <p>The range will be an array of two numbers that will not necessarily be in numerical order.</p>
+        <p>For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.</p>`,
+        code:
+            "\nconst smallestCommons = (arr) => {\n" +
+            "    const prime_numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23];\n" +
+            "    const sorted = arr.sort((a, b) => a - b);\n" +
+            "    const numbers = [];\n" +
+            "    for (let i = sorted[0]; i <= sorted[1]; i++) numbers.push(i);\n" +
+            "\n" +
+            "    const common_multiple_multipliers = [];\n" +
+            "    let common_multiple_found = false;\n" +
+            "    let prime_index = 0;\n" +
+            "\n" +
+            "    while (!common_multiple_found) {\n" +
+            "        let change_prime = true;\n" +
+            "        let add_multiplier = false;\n" +
+            "\n" +
+            "        for (let j = 0; j < numbers.length; j++) {\n" +
+            "            if (numbers[j] != 1) {\n" +
+            "                const prime_division = numbers[j] / prime_numbers[prime_index];\n" +
+            "                const is_integer = Number.isInteger(prime_division);\n" +
+            "                if (is_integer) {\n" +
+            "                    add_multiplier = true;\n" +
+            "                    numbers[j] = prime_division;\n" +
+            "                    const next_prime_division =\n" +
+            "                        prime_division / prime_numbers[prime_index];\n" +
+            "                    const next_is_integer =\n" +
+            "                        Number.isInteger(next_prime_division);\n" +
+            "                    if (next_is_integer) change_prime = false;\n" +
+            "                }\n" +
+            "            }\n" +
+            "        }\n" +
+            "\n" +
+            "        common_multiple_found = numbers.every((num) => num == 1);\n" +
+            "\n" +
+            "        if (add_multiplier) {\n" +
+            "            common_multiple_multipliers.push(prime_numbers[prime_index]);\n" +
+            "        }\n" +
+            "\n" +
+            "        if (change_prime) prime_index += 1;\n" +
+            "    }\n" +
+            "\n" +
+            "    let common_multiple = 1;\n" +
+            "    common_multiple_multipliers.forEach((num) => (common_multiple *= num));\n" +
+            "\n" +
+            "    return common_multiple;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(smallestCommons([2, 10])); // 2520\n",
+    },
+    {
+        name: "Drop it",
+        description: `<p>Given the array 'arr', iterate through and remove each element starting from the first element (the 0 index) until the function 'func' returns 'true' when the iterated element is passed through it.</p>
+        <p>Then return the rest of the array once the condition is satisfied, otherwise, arr should be returned as an empty array.</p>`,
+        code:
+            "\nconst dropElements = (arr, func) => {\n" +
+            "    for (let i = 0; i < arr.length; i++) {\n" +
+            "        const filtered = func(arr[i]);\n" +
+            "        if (filtered) {\n" +
+            "            return arr.slice(i);\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            "    return [];\n" +
+            "};\n" +
+            "\n" +
+            "console.log(dropElements([0, 1, 0, 1], (n) => n === 1)); // [1, 0, 1]\n",
+    },
+    {
+        name: "Steamroller",
+        description: `<p>Flatten a nested array. You must account for varying levels of nesting.</p>`,
+        code:
+            "\nconst steamrollArray = (arr) => {\n" +
+            "    const flat = [];\n" +
+            "\n" +
+            "    for (let i = 0; i < arr.length; i++) {\n" +
+            "        let elem = arr[i];\n" +
+            "\n" +
+            "        if (!Array.isArray(elem)) {\n" +
+            "            flat.push(elem);\n" +
+            "            continue;\n" +
+            "        }\n" +
+            "\n" +
+            "        let counter = 0;\n" +
+            "        while (counter <= arr[i].length) {\n" +
+            "            for (let j = 0; j < elem.length; j++) {\n" +
+            "                if (!Array.isArray(elem[j])) {\n" +
+            "                    flat.push(elem[j]);\n" +
+            "                    continue;\n" +
+            "                }\n" +
+            "\n" +
+            "                counter -= 1;\n" +
+            "                elem = elem[j];\n" +
+            "                break;\n" +
+            "            }\n" +
+            "            counter += 2;\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            "    return flat;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(steamrollArray([1, {}, [3, [[4]]]])); // [1, {}, 3, 4]\n",
+    },
+    {
+        name: "Binary Agents",
+        description: `<p>Return an English translated sentence of the passed binary string.</p>
+        <p>The binary string will be space separated.</p>`,
+        code:
+            "\nconst binaryAgent = (str) => {\n" +
+            '    const binaries = str.slice().split(" ");\n' +
+            '    let text = "";\n' +
+            "\n" +
+            "    for (let i = 0; i < binaries.length; i++) {\n" +
+            "        const binary = binaries[i];\n" +
+            "\n" +
+            "        const binary_length = binary.length - 1;\n" +
+            "        let binary_sum = 0;\n" +
+            "        for (let j = 0; j < binary.length; j++) {\n" +
+            "            const byte = binary[j];\n" +
+            "\n" +
+            "            if (byte == 1) {\n" +
+            "                binary_sum += 2 ** (binary_length - j);\n" +
+            "            }\n" +
+            "        }\n" +
+            "        text += String.fromCharCode(binary_sum);\n" +
+            "    }\n" +
+            "\n" +
+            "    return text;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(\n" +
+            "    binaryAgent(\n" +
+            '        "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"\n' +
+            "    )\n" +
+            "); // Aren't bonfires fun!?\n",
+    },
+    {
+        name: "Everything Be True",
+        description: `<p>Check if the predicate (second argument) is truthy on all elements of a collection (first argument).</p>
+        <p>In other words, you are given an array collection of objects. The predicate 'pre' will be an object property and you need to return 'true' if its value is 'truthy'. Otherwise, return 'false'</p>
+        <p>In JavaScript, 'truthy' values are values that translate to 'true' when evaluated in a Boolean context.</p>
+        <p>Remember, you can access object properties through either dot notation or '[]' notation.</p>`,
+        code:
+            "\nconst truthCheck = (collection, pre) => {\n" +
+            "    for (let index = 0; index < collection.length; index++) {\n" +
+            "        const element = collection[index];\n" +
+            "        const truthy = Boolean(element[pre]);\n" +
+            "        if (!truthy) return false;\n" +
+            "    }\n" +
+            "\n" +
+            "    return true;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(\n" +
+            "    truthCheck(\n" +
+            "        [\n" +
+            '            { name: "Quincy", role: "Founder", isBot: true },\n' +
+            '            { name: "Naomi", role: "", isBot: false },\n' +
+            '            { name: "Camperbot", role: "Bot", isBot: true },\n' +
+            "        ],\n" +
+            '        "isBot"\n' +
+            "    )\n" +
+            "); // false\n",
+    },
 ];

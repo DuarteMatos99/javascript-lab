@@ -218,7 +218,7 @@ console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4])); // [1, 2, 3, 5, 4]
  */
 
 // Convert HTML Entities
-
+/* 
 const convertHTML = (str) => {
     const html_entities = {
         "&": "&amp;",
@@ -238,4 +238,210 @@ const convertHTML = (str) => {
     return final_str;
 };
 
-console.log(convertHTML('Stuff in "quotation marks"'));
+console.log(convertHTML('Stuff in "quotation marks"')); // Stuff in &quot;quotation marks&quot;
+ */
+
+// Sum All Odd Fibonacci Numbers
+/* 
+const sumFibs = (num) => {
+    let current = 1;
+    let next = 0;
+    let previous = 0;
+    let sum_odd = 0;
+
+    while (sum_odd < num) {
+        previous = current;
+        current = next;
+        next = previous + current;
+
+        if (current > num) return sum_odd;
+        if (current % 2 == 1) sum_odd += current;
+    }
+
+    return sum_odd;
+};
+
+console.log(sumFibs(1000)); // 1785
+ */
+
+// Sum All Primes
+/* 
+const sumPrimes = (num) => {
+    let sum_primes = 0;
+    for (let i = 1; i <= num; i++) {
+        let counter = 0;
+        for (let j = 1; j <= i; j++) {
+            if (i % j == 0) counter += 1;
+            if (counter == 3) break;
+        }
+        if (counter == 2) sum_primes += i;
+    }
+    return sum_primes;
+};
+
+console.log(sumPrimes(10)); // 17
+ */
+
+// Smallest Common Multiple
+/* 
+const smallestCommons = (arr) => {
+    const prime_numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+    const sorted = arr.sort((a, b) => a - b);
+    const numbers = [];
+    for (let i = sorted[0]; i <= sorted[1]; i++) numbers.push(i);
+
+    const common_multiple_multipliers = [];
+    let common_multiple_found = false;
+    let prime_index = 0;
+
+    while (!common_multiple_found) {
+        let change_prime = true;
+        let add_multiplier = false;
+
+        for (let j = 0; j < numbers.length; j++) {
+            if (numbers[j] != 1) {
+                const prime_division = numbers[j] / prime_numbers[prime_index];
+                const is_integer = Number.isInteger(prime_division);
+                if (is_integer) {
+                    add_multiplier = true;
+                    numbers[j] = prime_division;
+                    const next_prime_division =
+                        prime_division / prime_numbers[prime_index];
+                    const next_is_integer =
+                        Number.isInteger(next_prime_division);
+                    if (next_is_integer) change_prime = false;
+                }
+            }
+        }
+
+        common_multiple_found = numbers.every((num) => num == 1);
+
+        if (add_multiplier) {
+            common_multiple_multipliers.push(prime_numbers[prime_index]);
+        }
+
+        if (change_prime) prime_index += 1;
+    }
+
+    let common_multiple = 1;
+    common_multiple_multipliers.forEach((num) => (common_multiple *= num));
+
+    return common_multiple;
+};
+
+console.log(smallestCommons([2, 10])); // 2520
+ */
+
+// Drop it
+/* 
+const dropElements = (arr, func) => {
+    for (let i = 0; i < arr.length; i++) {
+        const filtered = func(arr[i]);
+        if (filtered) {
+            return arr.slice(i);
+        }
+    }
+
+    return [];
+};
+
+console.log(dropElements([0, 1, 0, 1], (n) => n === 1)); // [1, 0, 1]
+ */
+
+// Steamroller
+/* 
+const steamrollArray = (arr) => {
+    const flat = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        let elem = arr[i];
+
+        if (!Array.isArray(elem)) {
+            flat.push(elem);
+            continue;
+        }
+
+        let counter = 0;
+        while (counter <= arr[i].length) {
+            for (let j = 0; j < elem.length; j++) {
+                if (!Array.isArray(elem[j])) {
+                    flat.push(elem[j]);
+                    continue;
+                }
+
+                counter -= 1;
+                elem = elem[j];
+                break;
+            }
+            counter += 2;
+        }
+    }
+
+    return flat;
+};
+
+console.log(steamrollArray([1, {}, [3, [[4]]]])); // [1, {}, 3, 4]
+ */
+
+// Binary Agents
+/* 
+const binaryAgent = (str) => {
+    const binaries = str.slice().split(" ");
+    let text = "";
+
+    for (let i = 0; i < binaries.length; i++) {
+        const binary = binaries[i];
+
+        const binary_length = binary.length - 1;
+        let binary_sum = 0;
+        for (let j = 0; j < binary.length; j++) {
+            const byte = binary[j];
+
+            if (byte == 1) {
+                binary_sum += 2 ** (binary_length - j);
+            }
+        }
+        text += String.fromCharCode(binary_sum);
+    }
+
+    return text;
+};
+
+console.log(
+    binaryAgent(
+        "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
+    )
+); // Aren't bonfires fun!?
+ */
+
+// Everything Be True
+/* 
+const truthCheck = (collection, pre) => {
+    for (let index = 0; index < collection.length; index++) {
+        const element = collection[index];
+        const truthy = Boolean(element[pre]);
+        if (!truthy) return false;
+    }
+
+    return true;
+};
+
+console.log(
+    truthCheck(
+        [
+            { name: "Quincy", role: "Founder", isBot: true },
+            { name: "Naomi", role: "", isBot: false },
+            { name: "Camperbot", role: "Bot", isBot: true },
+        ],
+        "isBot"
+    )
+); // false
+ */
+
+// Arguments Optional
+
+const addTogether = (a, b = addTogether()) => {
+    return a, b;
+};
+
+console.log(addTogether(2)(3));
