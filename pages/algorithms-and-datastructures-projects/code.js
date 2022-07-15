@@ -18,9 +18,9 @@ console.log(palindrome("0_0 (: /- :) 0-0")); // true
  */
 
 // Roman Numeral Converter
-
-function convertToRoman(num) {
-    const roman = {
+/* 
+const convertToRoman = (num) => {
+    const roman_numerals = {
         M: 1000,
         CM: 900,
         D: 500,
@@ -35,6 +35,25 @@ function convertToRoman(num) {
         IV: 4,
         I: 1,
     };
-}
 
-console.log(convertToRoman(36));
+    let remaining_num = num;
+    let roman_sentence = String();
+    for (const [roman_numeral, arabic_numeral] of Object.entries(
+        roman_numerals
+    )) {
+        let next_roman_numeral = false;
+        while (!next_roman_numeral) {
+            if (arabic_numeral <= remaining_num) {
+                remaining_num -= arabic_numeral;
+                roman_sentence += roman_numeral;
+            } else {
+                next_roman_numeral = true;
+            }
+        }
+    }
+
+    return roman_sentence;
+};
+
+console.log(convertToRoman(45)); // XLV
+ */

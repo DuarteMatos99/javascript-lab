@@ -23,4 +23,47 @@ export const algorithms_and_datastructures_projects = [
             "\n" +
             'console.log(palindrome("0_0 (: /- :) 0-0")); // true\n',
     },
+    {
+        name: "Roman Numeral Converter",
+        description: `<p>Convert the given number into a roman numeral.</p>
+        <p>All roman numerals answers should be provided in upper-case.</p>`,
+        code:
+            "\nconst convertToRoman = (num) => {\n" +
+            "    const roman_numerals = {\n" +
+            "        M: 1000,\n" +
+            "        CM: 900,\n" +
+            "        D: 500,\n" +
+            "        CD: 400,\n" +
+            "        C: 100,\n" +
+            "        XC: 90,\n" +
+            "        L: 50,\n" +
+            "        XL: 40,\n" +
+            "        X: 10,\n" +
+            "        IX: 9,\n" +
+            "        V: 5,\n" +
+            "        IV: 4,\n" +
+            "        I: 1,\n" +
+            "    };\n" +
+            "\n" +
+            "    let remaining_num = num;\n" +
+            "    let roman_sentence = String();\n" +
+            "    for (const [roman_numeral, arabic_numeral] of Object.entries(\n" +
+            "        roman_numerals\n" +
+            "    )) {\n" +
+            "        let next_roman_numeral = false;\n" +
+            "        while (!next_roman_numeral) {\n" +
+            "            if (arabic_numeral <= remaining_num) {\n" +
+            "                remaining_num -= arabic_numeral;\n" +
+            "                roman_sentence += roman_numeral;\n" +
+            "            } else {\n" +
+            "                next_roman_numeral = true;\n" +
+            "            }\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            "    return roman_sentence;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(convertToRoman(45)); // XLV\n",
+    },
 ];
