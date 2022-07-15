@@ -439,9 +439,83 @@ console.log(
  */
 
 // Arguments Optional
+/* 
+const addTogether = (a, b) => {
+    if (typeof a == "number" && typeof b == "number") return a + b;
+    if (typeof a == "string" || typeof b == "string") return undefined;
 
-const addTogether = (a, b = addTogether()) => {
-    return a, b;
+    return (b) => {
+        if (typeof b != "number") return undefined;
+        return a + b;
+    };
 };
 
-console.log(addTogether(2)(3));
+console.log(addTogether(3)(3)); // 6
+ */
+
+// Make a Person
+/* 
+const Person = function (firstAndLast) {
+    // Only change code below this line
+    // Complete the method below and implement the others similarly
+    const names = firstAndLast.split(" ");
+
+    this.getFirstName = function () {
+        return this.firstName;
+    };
+
+    this.getLastName = function () {
+        return this.lastName;
+    };
+
+    this.getFullName = function () {
+        return this.fullName;
+    };
+
+    this.setFirstName = function (str) {
+        this.firstName = str;
+    };
+
+    this.setLastName = function (str) {
+        this.lastName = str;
+    };
+
+    this.setFullName = function (str) {
+        this.fullName = str;
+    };
+
+    return firstAndLast;
+};
+
+const bob = new Person("Bob Ross");
+ */
+
+// Map The Debris
+/* 
+const orbitalPeriod = (arr) => {
+    const GM = 398600.4418;
+    const earthRadius = 6367.4447;
+    const updated_orbitalPeriod = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        const satellite = arr[i];
+        const flightVelocity = Math.sqrt(
+            GM / (earthRadius + satellite["avgAlt"])
+        );
+        const orbitalPeriod =
+            6.28318530718 *
+            ((earthRadius + satellite["avgAlt"]) / flightVelocity);
+
+        const rounded_orbitalPeriod = Math.round((orbitalPeriod / 100) * 100);
+
+        updated_orbitalPeriod.push({
+            name: satellite["name"],
+            orbitalPeriod: rounded_orbitalPeriod,
+        });
+    }
+
+    return updated_orbitalPeriod;
+};
+
+console.log(orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }])); // [{name: 'sputnik', orbitalPeriod: 86400}]
+ */

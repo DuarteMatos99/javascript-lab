@@ -490,4 +490,95 @@ export const scripting_algorithms = [
             "    )\n" +
             "); // false\n",
     },
+    {
+        name: "Arguments Optional",
+        description: `<p>Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.</p>
+        <p>For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function.</p>
+        <p>If either argument isn't a valid number, return undefined.</p>`,
+        code:
+            "\nconst addTogether = (a, b) => {\n" +
+            '    if (typeof a == "number" && typeof b == "number") return a + b;\n' +
+            '    if (typeof a == "string" || typeof b == "string") return undefined;\n' +
+            "\n" +
+            "    return (b) => {\n" +
+            '        if (typeof b != "number") return undefined;\n' +
+            "        return a + b;\n" +
+            "    };\n" +
+            "};\n" +
+            "\n" +
+            "console.log(addTogether(3)(3)); // 6\n",
+    },
+    {
+        name: "Make a Person",
+        description: `<p></p>`,
+        code:
+            "\nconst Person = function (firstAndLast) {\n" +
+            "    // Only change code below this line\n" +
+            "    // Complete the method below and implement the others similarly\n" +
+            '    const names = firstAndLast.split(" ");\n' +
+            "\n" +
+            "    this.getFirstName = function () {\n" +
+            "        return this.firstName;\n" +
+            "    };\n" +
+            "\n" +
+            "    this.getLastName = function () {\n" +
+            "        return this.lastName;\n" +
+            "    };\n" +
+            "\n" +
+            "    this.getFullName = function () {\n" +
+            "        return this.fullName;\n" +
+            "    };\n" +
+            "\n" +
+            "    this.setFirstName = function (str) {\n" +
+            "        this.firstName = str;\n" +
+            "    };\n" +
+            "\n" +
+            "    this.setLastName = function (str) {\n" +
+            "        this.lastName = str;\n" +
+            "    };\n" +
+            "\n" +
+            "    this.setFullName = function (str) {\n" +
+            "        this.fullName = str;\n" +
+            "    };\n" +
+            "\n" +
+            "    return firstAndLast;\n" +
+            "};\n" +
+            "\n" +
+            'const bob = new Person("Bob Ross");\n',
+    },
+    {
+        name: "Map the Debris",
+        description: `<p>According to Kepler's Third Law, the orbital period  T  of two point masses orbiting each other in a circular or elliptic orbit</p>
+        <p>Return a new array that transforms the elements' average altitude into their orbital periods (in seconds).</p>
+        <p>The array will contain objects in the format '{name: 'name', avgAlt: avgAlt}'.</p>
+        <p>The values should be rounded to the nearest whole number. The body being orbited is Earth.</p>
+        <p>The radius of the earth is 6367.4447 kilometers, and the GM value of earth is 398600.4418 km3s-2.</p>`,
+        code:
+            "\nconst orbitalPeriod = (arr) => {\n" +
+            "    const GM = 398600.4418;\n" +
+            "    const earthRadius = 6367.4447;\n" +
+            "    const updated_orbitalPeriod = [];\n" +
+            "\n" +
+            "    for (let i = 0; i < arr.length; i++) {\n" +
+            "        const satellite = arr[i];\n" +
+            "        const flightVelocity = Math.sqrt(\n" +
+            '            GM / (earthRadius + satellite["avgAlt"])\n' +
+            "        );\n" +
+            "        const orbitalPeriod =\n" +
+            "            6.28318530718 *\n" +
+            '            ((earthRadius + satellite["avgAlt"]) / flightVelocity);\n' +
+            "\n" +
+            "        const rounded_orbitalPeriod = Math.round((orbitalPeriod / 100) * 100);\n" +
+            "\n" +
+            "        updated_orbitalPeriod.push({\n" +
+            '            name: satellite["name"],\n' +
+            "            orbitalPeriod: rounded_orbitalPeriod,\n" +
+            "        });\n" +
+            "    }\n" +
+            "\n" +
+            "    return updated_orbitalPeriod;\n" +
+            "};\n" +
+            "\n" +
+            "console.log(orbitalPeriod([{ name: \"sputnik\", avgAlt: 35873.5553 }])); // [{name: 'sputnik', orbitalPeriod: 86400}]\n",
+    },
 ];
